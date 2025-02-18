@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import { FaHeart, FaBars, FaTimes, FaHome, FaSearch } from "react-icons/fa";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo1.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
