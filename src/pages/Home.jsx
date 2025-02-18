@@ -25,7 +25,7 @@ const Home = () => {
   const fetchRecipes = async () => {
     setIsLoading(true);
     try {
-      let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=1e3c40da297549a9a49c41c74028e4ca`;
+      let url = `https://api.spoonacular.com/recipes/complexSearch?apiKey=13031e5cad9d414a99b1a7b0ed32b5ab `;
 
       if (selectedFilter !== "all") {
         url += `&type=${selectedFilter}`;

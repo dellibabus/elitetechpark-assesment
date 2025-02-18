@@ -2,6 +2,17 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
+
+const loadFavorites = () => {
+  const storedFavorites = localStorage.getItem("favorites");
+  return storedFavorites ? JSON.parse(storedFavorites) : [];
+};
+
+
+const saveFavorites = (favorites) => {
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+};
+
 export const fetchRecipes = createAsyncThunk(
   "recipes/fetchRecipes",
   async (_, { rejectWithValue }) => {
@@ -21,7 +32,7 @@ export const fetchRecipes = createAsyncThunk(
 const initialState = {
   searchQuery: "",
   recipes: [],
-  favorites: [],
+  favorites: loadFavorites(), 
   loading: false,
 };
 
@@ -39,6 +50,8 @@ const favoritesSlice = createSlice({
       );
       if (!existingRecipe) {
         state.favorites.push(action.payload);
+        saveFavorites(state.favorites); 
+        toast.success("Added to favorites!");
       }
     },
 
@@ -46,6 +59,8 @@ const favoritesSlice = createSlice({
       state.favorites = state.favorites.filter(
         (recipe) => recipe.idMeal !== action.payload
       );
+      saveFavorites(state.favorites); 
+      toast.info("Removed from favorites!");
     },
   },
   extraReducers: (builder) => {

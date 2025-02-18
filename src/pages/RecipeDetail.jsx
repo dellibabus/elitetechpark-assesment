@@ -1,20 +1,26 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { addFavorite, removeFavorite } from "../redux/recipeSlice";
+import Loading from "../components/Loading";
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [isFavorite, setIsFavorite] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const favorites = useSelector((state) => state.recipes.favorites);
+
+  const isFavorite = favorites.some((fav) => fav.idMeal === id);
 
   useEffect(() => {
     const fetchRecipeDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${id}/information?apiKey=1e3c40da297549a9a49c41c74028e4ca`
+          `https://api.spoonacular.com/recipes/${id}/information?apiKey=13031e5cad9d414a99b1a7b0ed32b5ab`
         );
         setRecipe(response.data);
       } catch (error) {
@@ -25,12 +31,18 @@ const RecipeDetail = () => {
   }, [id]);
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    toast.success(isFavorite ? "Removed from Favorites" : "Added to Favorites");
+    if (isFavorite) {
+      dispatch(removeFavorite(id));
+      toast.info("Removed from Favorites");
+    } else {
+      dispatch(addFavorite({ idMeal: id, strMeal: recipe.title, strMealThumb: recipe.image }));
+      toast.success("Added to Favorites");
+    }
   };
 
-  if (!recipe)
-    return <div className="text-center mt-10 text-xl">Loading...</div>;
+  if (!recipe) {
+    return <Loading />;
+  }
 
   return (
     <div className="container mx-auto p-4 mt-24">
@@ -52,7 +64,7 @@ const RecipeDetail = () => {
               </button>
               <button
                 onClick={toggleFavorite}
-                className={`w-full sm:w-auto px-8 py-3 border-2 flex items-center justify-center gap-5${
+                className={`w-full sm:w-auto px-8 py-3 border-2 flex items-center justify-center gap-5 ${
                   isFavorite
                     ? "border-red-600 text-red-600"
                     : "border-gray-300 text-gray-600"
