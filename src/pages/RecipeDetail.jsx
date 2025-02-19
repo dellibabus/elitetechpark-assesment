@@ -20,7 +20,7 @@ const RecipeDetail = () => {
     const fetchRecipeDetails = async () => {
       try {
         const response = await axios.get(
-          `https://api.spoonacular.com/recipes/${id}/information?apiKey=13031e5cad9d414a99b1a7b0ed32b5ab`
+          `https://api.spoonacular.com/recipes/${id}/information?apiKey=a352f5325e714f8e8b7d161f2f18e9d6`
         );
         setRecipe(response.data);
       } catch (error) {
