@@ -92,7 +92,7 @@ const Home = () => {
       <div className="fixed bottom-6 z-50 right-6 md:hidden">
         <button
           onClick={() => setIsFilterOpen(!isFilterOpen)}
-          className="bg-red-600 text-white p-4 rounded-full shadow-xl hover:bg-red-700 transition duration-300"
+          className="bg-green-600 text-white p-4 rounded-full shadow-xl hover:bg-green-700 transition duration-300"
         >
           <FaFilter size={24} />
         </button>
