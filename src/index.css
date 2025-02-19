@@ -14,3 +14,14 @@ body {
 h1 {
   font-size: 2rem;
 }
+
+@layer components {
+  .custom-pagination .swiper-pagination-bullet {
+    @apply bg-green-600 opacity-50 transition-opacity duration-300;
+  }
+
+  .custom-pagination .swiper-pagination-bullet-active {
+    @apply bg-green-500 opacity-100;
+  }
+}
+

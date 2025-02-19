@@ -18,11 +18,11 @@ const SearchBar = () => {
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         placeholder="Search recipes..."
-        className="w-full p-3 rounded-lg border border-gray-300 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 text-gray-900 transition-all duration-300"
+        className="w-full p-3 rounded-lg border border-green-300 focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400 text-gray-900 transition-all duration-300"
       />
       <button 
         type="submit" 
-        className="bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg transition-all duration-300"
+        className="bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg transition-all duration-300"
       >
         Search
       </button>

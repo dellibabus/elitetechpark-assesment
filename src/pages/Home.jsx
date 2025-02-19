@@ -112,7 +112,7 @@ const Home = () => {
                   }}
                   className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium transition ${
                     selectedFilter === filter.id
-                      ? "bg-red-600 text-white"
+                      ? "bg-green-600 text-white"
                       : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                   }`}
                 >
@@ -142,8 +142,8 @@ const Home = () => {
                 onClick={() => setSelectedFilter(filter.id)}
                 className={`flex items-center space-x-2 px-4 py-2 rounded-md font-medium whitespace-nowrap transition ${
                   selectedFilter === filter.id
-                    ? "bg-red-600 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-red-300"
+                    ? "bg-green-600 text-white"
+                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                 }`}
               >
                 <span className="text-lg">{filter.icon}</span>
